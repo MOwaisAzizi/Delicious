@@ -51,8 +51,8 @@ if ($result && $result->num_rows > 0) {
       <?php if (!empty($menuCollection)): ?>
         <?php foreach ($menuCollection as $menuItem): ?>
           <div class="col-lg-6 menu-item isotope-item filter-starters">
-            <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-            <div class="menu-content">
+          <img src="<?= htmlspecialchars($menuItem['image']); ?>" class="menu-img" alt="">
+          <div class="menu-content">
               <a href="#"><?= htmlspecialchars($menuItem['title']); ?></a>
               <span><?= htmlspecialchars($menuItem['price']); ?></span>
             </div>
