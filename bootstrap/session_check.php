@@ -9,13 +9,17 @@ if(!isset($_SESSION['isLogin']) && $_SESSION['isLogin'] !== true){
 $user_role = $_SESSION['user_role'];
 $isAuthorize = false;
 
+$currentFile = basename($_SERVER['PHP_SELF']);
+//if($role === basename($_SERVER['REQUEST_URI'])) {
 if(isset(ROLES[$user_role])){
-    foreach(ROLES[$user_role] as $role)
-    if ($role === basename($_SERVER['REQUEST_URI'])) {
-    $isAuthorize = true;
-    break;
+    foreach(ROLES[$user_role] as $role){
+        if ($role === $currentFile) {
+            $isAuthorize = true;
+            break;
+        }
     }
 }
+
 if($isAuthorize !== true){
     header('location:login.php?notAuthorized'); die;
 }

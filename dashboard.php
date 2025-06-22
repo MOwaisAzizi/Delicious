@@ -1,9 +1,42 @@
+
+
 <?php include_once './bootstrap/init.php'; ?>
 <?php require_once "./component/head.php"; ?>
 
-<?php
-// bootstrap/init.php
+<style>
+  .sidebar {
+    height: 100vh;
+    background-color: #ff3e3e;
+    color: white;
+    padding: 1rem;
+    width: 250px;
+    position: fixed;
+  }
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .sidebar a:hover {
+    color: #ffd6d6;
+  }
+  .sidebar .nav-link.active {
+    background-color: white;
+    color: #ff3e3e !important;
+    border-radius: 8px;
+  }
+  .sidebar .submenu a {
+    padding-left: 1.5rem;
+    font-size: 0.9rem;
+  }
+  .main-content {
+    margin-left: 260px;
+    padding: 2rem;
+  }
+</style>
 
+<?php
 $host = 'localhost';
 $db = 'user_auth';
 $user = 'root';
@@ -24,10 +57,7 @@ if ($result && $result->num_rows > 0) {
 }
 ?>
 
-<body class="bg-light">
-  <a href="main.php" class="text-dark pt-4 px-3 d-block">← Back</a>
-
-  <div class="container py-5">
+<div class="container py-5">
     <h2 class="text-center mb-4">Admin Dashboard</h2>
 
     <div class="table-responsive">
@@ -64,5 +94,3 @@ if ($result && $result->num_rows > 0) {
         </tbody>
       </table>
     </div>
-  </div>
-</body>

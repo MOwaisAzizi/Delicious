@@ -84,7 +84,7 @@ if (!is_dir($uploadDir)) {
 
 <body class="bg-light">
 
-<a href="main.php" class="text-dark pt-4 px-3 d-block">← Back</a>
+<!-- <a href="main.php" class="text-dark pt-4 px-3 d-block">← Back</a> -->
 
 <div class="container py-5">
   <div class="row justify-content-center">

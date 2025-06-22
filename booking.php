@@ -6,7 +6,6 @@ $pass = '';
 
 $error = '';
 $success = '';
-echo 'starting..';
 // Connect to MySQL (without selecting DB to create DB first)
 $conn = new mysqli($host, $user, $pass);
 if ($conn->connect_error) {
@@ -34,7 +33,6 @@ CREATE TABLE IF NOT EXISTS bookings (
 )");
 
 if (isset($_POST['btn-register'])) {
-    echo'is post';
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
     $phone = $_POST["phone"];
