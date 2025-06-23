@@ -54,7 +54,7 @@
 
 
     <div class="mt-3">
-      <a href="#"><i class="bi bi-image"></i> Images</a>
+      <a href="?page=table-images"><i class="bi bi-image"></i> Images</a>
       <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Log out</a>
     </div>
   </div>
@@ -66,6 +66,10 @@
     switch ($page) {
       case 'add_menu':
         require_once './add_menu.php';
+        break;
+
+        case 'table-images':
+        require_once './table-images.php';
         break;
 
       case 'dashboard':
