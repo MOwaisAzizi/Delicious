@@ -1,6 +1,6 @@
 <?php
 define("ROLES", [
-    "admin"=>["add_menu.php", "dashboard.php","main.php"],
+    "admin"=>["admin-panel.php","main.php"],
     "user"=>["main.php"],
 ]);
 ?>

@@ -12,10 +12,6 @@
         </div>
       <div>
         <a href="#book-a-table" class="cta-btn">Booka a table</a>
-        <?php if (isset($user) && $user === "admin"): ?>
-        <a href="dashboard.php" class="px-3">Dashboard</a>
-        <a href="add_menu.php" class="">add menu</a>
-        <?php endif; ?>
          <?php if (!isset($user)): ?>
         <a href="signup.php" class="px-3">sign up</a>
         <a href="login.php" class="">login</a>
