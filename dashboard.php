@@ -34,7 +34,7 @@
     margin-left: 260px;
     padding: 2rem;
   }
-</style>
+  </style>
 
 <?php
 $host = 'localhost';
@@ -55,6 +55,34 @@ if ($result && $result->num_rows > 0) {
         $bookings[] = $row;
     }
 }
+
+if (isset($_POST['update'])){
+      $bookings = updatebookingTable($conn); // ✅ fixed
+}
+
+// Function that deletes and returns updated bookings
+function updatebookingTable($conn) {
+  $now = date('Y-m-d H:i:s');
+  echo "in Fucntion: $now<br>";
+
+
+    $conn->query("DELETE FROM bookings WHERE date < '$now'");
+
+    $updateBookings = [];
+    $result = $conn->query("SELECT * FROM bookings ORDER BY created_at DESC");
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $updateBookings[] = $row;
+        }
+    }
+
+    return $updateBookings;
+}
+
+foreach ($bookings as $b) {
+  echo "Booking: {$b['created_at']}<br>";
+}
+
 ?>
 
 <div class="container py-5">
@@ -78,9 +106,9 @@ if ($result && $result->num_rows > 0) {
             <?php foreach ($bookings as $booking): ?>
               <tr>
                 <td><?= htmlspecialchars($booking['name']) ?></td>
-                <td><?= htmlspecialchars($booking['email']) ?></td>
                 <td><?= htmlspecialchars($booking['phone']) ?></td>
                 <td><?= htmlspecialchars($booking['time']) ?></td>
+                <td><?= htmlspecialchars($booking['table_number']) ?></td>
                 <td><?= htmlspecialchars($booking['members']) ?></td>
                 <td><?= htmlspecialchars($booking['date']) ?></td>
                 <td><?= htmlspecialchars($booking['message']) ?></td>
@@ -93,4 +121,7 @@ if ($result && $result->num_rows > 0) {
           <?php endif; ?>
         </tbody>
       </table>
+      <form action="" method = 'post'>
+        <button class='btn btn-primary text-white' type='submit' name='update'>Update<button>
+      </form>
     </div>

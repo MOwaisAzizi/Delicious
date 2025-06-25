@@ -4,11 +4,14 @@ $db = 'user_auth';
 $user = 'root';
 $pass = '';
 
+$number = 0;
+
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $conn->connect_error);
 }
 
+// $conn->query("DROP TABLE IF EXISTS table_image");
 // Create table if not exists
 $conn->query("
 CREATE TABLE IF NOT EXISTS table_image (
@@ -45,7 +48,7 @@ if ( isset($_FILES['image'])) {
                 $stmt->execute();
                 $stmt->close();
 
-               header("Location: " . $_SERVER['PHP_SELF']);
+               header("Location: admin-panel.php?page=table-images");
             } else {
                 $error = "Failed to move uploaded image.";
             }
@@ -78,15 +81,17 @@ $images = $conn->query("SELECT * FROM table_image ORDER BY uploaded_at DESC");
       <?php if (!empty($error)): ?>
         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
       <?php endif; ?>
-      <button type="submit" class="btn btn-primary">Upload Image</button>
+      <button type="submit" class="btn btn-primary">Add Table</button>
     </form>
 
     <!-- Image Display Section -->
     <div class="row g-3 mb-4 border rounded p-3 bg-light">
       <!-- Dynamic Images -->
       <?php while ($row = $images->fetch_assoc()): ?>
+        <?php $number+=1 ?>
         <div class="col-md-3">
           <img src="<?= htmlspecialchars($row['image']) ?>" class="image-preview rounded shadow-sm" alt="Uploaded Image">
+          <div class='text-center'><h5><?php echo $number ?></h5></div>
         </div>
       <?php endwhile; ?>
     </div>
